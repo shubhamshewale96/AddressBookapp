@@ -20,7 +20,8 @@ public class AddressBookMain {
 		int ch = 0;
 		while (ch == 0) {
 			Scanner scanner = new Scanner(System.in);
-			System.out.print("1. = Add Contacts\n2. = Display Contact\n3. = Edit \n4. =Exit\nEnter Your Choice: ");
+			System.out.print(
+					"1. = Add Contacts\n2. = Display Contact\n3. = Edit \n4. =Delete \n5. =Exit\nEnter Your Choice: ");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -33,12 +34,29 @@ public class AddressBookMain {
 				addressBookMain.edit();
 				break;
 			case 4:
+				addressBookMain.delete();
+				break;
+			case 5:
 				ch = 1;
 				break;
 			default:
-				System.out.println("Plz Enter 1 or 2 or 3  only");
+				System.out.println("Plz Enter 1 or 2 or 3 or 4  only");
 				break;
 			}
+		}
+	}
+
+	private void delete() {
+		// TODO Auto-generated method stub
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter Name To Remove from Contact list: ");
+		String firstName = scanner.nextLine();
+		for (int i = 0; i < contactList.size(); i++) {
+			if (Objects.equals(firstName, contactList.get(i).getFirstName())) {
+				contactList.remove(contactList.get(i));
+				System.out.println("\nDeleted Successfully.....\n");
+			} else
+				System.out.println("The name entered is incorrect.");
 		}
 	}
 
